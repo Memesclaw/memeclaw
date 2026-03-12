@@ -1,0 +1,26 @@
+{
+  "api": {
+    "mode": "relay",
+    "endpoint": "https://your-api-endpoint.com",
+    "key": "sk-your-api-key-here",
+    "model": "claude-opus-4-6",
+    "timeout": 60000
+  },
+  "gateway": {
+    "port": 18789,
+    "host": "127.0.0.1",
+    "wsPath": "/ws"
+  },
+  "telegram": {
+    "enabled": false,
+    "botToken": ""
+  },
+  "agent": {
+    "maxTokens": 4096,
+    "temperature": 0.7
+  },
+  "storage": {
+    "dbPath": "~/.memeclaw/data.db",
+    "sessionsPath": "~/.memeclaw/sessions"
+  }
+}
