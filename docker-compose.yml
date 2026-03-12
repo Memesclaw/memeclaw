@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  memeclaw:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: memeclaw
+    restart: unless-stopped
+    ports:
+      - "18789:18789"
+    environment:
+      - NODE_ENV=production
+      - MEMECLAW_PORT=18789
+      - MEMECLAW_HOST=0.0.0.0
+      # 添加你的 API Key
+      # - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      # - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - memeclaw-data:/home/memeclaw/.memeclaw
+    networks:
+      - memeclaw-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:18789/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  # Nginx 反向代理（可选）
+  nginx:
+    image: nginx:alpine
+    container_name: memeclaw-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    depends_on:
+      - memeclaw
+    networks:
+      - memeclaw-network
+
+volumes:
+  memeclaw-data:
+    driver: local
+
+networks:
+  memeclaw-network:
+    driver: bridge
