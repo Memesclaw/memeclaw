@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build
+dist/
+build/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test
+coverage/
+
+# Temp
+tmp/
+temp/
+
+# Config (keep example)
+!.env.example
+
+# Frontend
+frontend/dist/
+frontend/node_modules/
+
+# Memory/Storage
+.memory/
+*.db
+*.sqlite
+
+# Certs
+certs/
+*.pem
+*.key
+
+# Vite cache
+.vite/
