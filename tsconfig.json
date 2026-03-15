@@ -18,6 +18,10 @@
     "incremental": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
@@ -29,5 +33,5 @@
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "frontend"]
+  "exclude": ["node_modules", "dist", "frontend", "**/*.test.ts", "**/*.spec.ts"]
 }
